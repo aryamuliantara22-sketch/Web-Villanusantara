@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WE Villa Nusantara — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div id="page-login" class="page active">
+    <div class="login-bg">
+      <div class="login-orb orb-1"></div>
+      <div class="login-orb orb-2"></div>
+      <div class="login-orb orb-3"></div>
+    </div>
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M5 28L20 8L35 28H5Z" fill="currentColor" opacity="0.8"/>
+            <path d="M10 28V36H30V28" stroke="currentColor" stroke-width="2" fill="none"/>
+            <rect x="16" y="28" width="8" height="8" fill="currentColor" opacity="0.6"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">WE Villa Nusantara</h1>
+          <p class="brand-sub">Admin Management System</p>
+        </div>
+      </div>
+      <div class="login-divider"></div>
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" id="login-username" class="form-input" placeholder="Masukkan username" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-password-wrap">
+            <input type="password" id="login-password" class="form-input" placeholder="Masukkan password" />
+            <button type="button" class="toggle-pw" id="toggle-pw-btn">
+              <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p id="login-error" class="login-error hidden">Username atau password salah.</p>
+        <button type="submit" class="btn-primary btn-full" id="btn-login">Masuk</button>
+        <p class="login-hint">Demo: admin / admin123</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="page-app" class="page">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon sm">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M5 28L20 8L35 28H5Z" fill="currentColor" opacity="0.8"/>
+            <path d="M10 28V36H30V28" stroke="currentColor" stroke-width="2" fill="none"/>
+            <rect x="16" y="28" width="8" height="8" fill="currentColor" opacity="0.6"/>
+          </svg>
+        </div>
+        <div>
+          <span class="sidebar-title">WE Villa</span>
+          <span class="sidebar-sub">Nusantara</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-section="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg><span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-section="villa">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 21V9L12 3l9 6v12H3z"/><path d="M9 21V12h6v9"/>
+          </svg><span>Kelola Villa</span>
+        </button>
+        <button class="nav-item" data-section="pelanggan">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/>
+          </svg><span>Kelola Pelanggan</span>
+        </button>
+        <button class="nav-item" data-section="transaksi">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="12" y2="17"/>
+          </svg><span>Kelola Transaksi</span>
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-info">
+          <div class="admin-avatar" id="admin-avatar">A</div>
+          <div>
+            <p class="admin-name" id="admin-name">Administrator</p>
+            <p class="admin-role">Super Admin</p>
+          </div>
+        </div>
+        <button class="btn-logout" id="btn-logout" title="Logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <button class="sidebar-toggle" id="sidebar-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="topbar-breadcrumb"><span id="page-title">Dashboard</span></div>
+        <div class="topbar-right">
+          <div class="topbar-date" id="topbar-date"></div>
+        </div>
+      </div>
+
+      <!-- LOADING OVERLAY -->
+      <div id="section-loader" class="section-loader hidden">
+        <div class="loader-spinner"></div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <section id="section-dashboard" class="content-section active">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Selamat Datang, Admin</h2>
+            <p class="section-desc">Ringkasan sistem sewa Villa Nusantara</p>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9L12 3l9 6v12H3z"/><path d="M9 21V12h6v9"/></svg>
+            </div>
+            <div class="stat-info"><p class="stat-label">Total Villa</p><p class="stat-value" id="stat-villa">—</p></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+            </div>
+            <div class="stat-info"><p class="stat-label">Total Pelanggan</p><p class="stat-value" id="stat-pelanggan">—</p></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon sage">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="stat-info"><p class="stat-label">Total Transaksi</p><p class="stat-value" id="stat-transaksi">—</p></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon lime">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
+            </div>
+            <div class="stat-info"><p class="stat-label">Total Pendapatan</p><p class="stat-value" id="stat-pendapatan">—</p></div>
+          </div>
+        </div>
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Transaksi Terbaru</h3></div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead><tr><th>No. Transaksi</th><th>Pelanggan</th><th>Villa</th><th>Total</th><th>Status</th></tr></thead>
+                <tbody id="dashboard-transaksi-body"><tr><td colspan="5" class="empty-row">Memuat data...</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Status Villa</h3></div>
+            <div class="card-body" style="padding:16px">
+              <div id="villa-availability-list" class="availability-list"><p class="empty-text">Memuat data...</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VILLA -->
+      <section id="section-villa" class="content-section">
+        <div class="section-header">
+          <div><h2 class="section-title">Kelola Villa</h2><p class="section-desc">Manajemen data villa yang tersedia</p></div>
+          <button class="btn-primary" id="btn-tambah-villa">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tambah Villa
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <input type="text" class="search-input" id="search-villa" placeholder="Cari villa..." />
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead><tr><th>No</th><th>Kode</th><th>Nama Villa</th><th>Lokasi</th><th>Kapasitas</th><th>Harga/Malam</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="villa-table-body"><tr><td colspan="8" class="empty-row">Memuat data...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PELANGGAN -->
+      <section id="section-pelanggan" class="content-section">
+        <div class="section-header">
+          <div><h2 class="section-title">Kelola Pelanggan</h2><p class="section-desc">Manajemen data pelanggan setia</p></div>
+          <button class="btn-primary" id="btn-tambah-pelanggan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tambah Pelanggan
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <input type="text" class="search-input" id="search-pelanggan" placeholder="Cari pelanggan..." />
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead><tr><th>No</th><th>Nama</th><th>Email</th><th>No. HP</th><th>Alamat</th><th>Total Sewa</th><th>Aksi</th></tr></thead>
+              <tbody id="pelanggan-table-body"><tr><td colspan="7" class="empty-row">Memuat data...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSAKSI -->
+      <section id="section-transaksi" class="content-section">
+        <div class="section-header">
+          <div><h2 class="section-title">Kelola Transaksi</h2><p class="section-desc">Manajemen data sewa villa</p></div>
+          <button class="btn-primary" id="btn-tambah-transaksi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tambah Transaksi
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <input type="text" class="search-input" id="search-transaksi" placeholder="Cari transaksi..." />
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead><tr><th>No. Transaksi</th><th>Pelanggan</th><th>Villa</th><th>Check-in</th><th>Check-out</th><th>Durasi</th><th>Total</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="transaksi-table-body"><tr><td colspan="9" class="empty-row">Memuat data...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL VILLA -->
+  <div id="modal-villa" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-villa-title">Tambah Villa</h3>
+        <button class="modal-close" data-modal="modal-villa">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="villa-id" />
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nama Villa <span class="required">*</span></label>
+            <input type="text" id="villa-nama" class="form-input" placeholder="Contoh: Villa Pinus Sejuk" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Lokasi <span class="required">*</span></label>
+            <input type="text" id="villa-lokasi" class="form-input" placeholder="Contoh: Ubud, Bali" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Kapasitas (orang) <span class="required">*</span></label>
+            <input type="number" id="villa-kapasitas" class="form-input" placeholder="0" min="1" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Harga per Malam (Rp) <span class="required">*</span></label>
+            <input type="number" id="villa-harga" class="form-input" placeholder="0" min="0" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Fasilitas</label>
+            <input type="text" id="villa-fasilitas" class="form-input" placeholder="WiFi, AC, Kolam Renang..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select id="villa-status" class="form-input form-select">
+              <option value="Tersedia">Tersedia</option>
+              <option value="Disewa">Sedang Disewa</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Deskripsi</label>
+          <textarea id="villa-deskripsi" class="form-input form-textarea" rows="3" placeholder="Deskripsi villa..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" data-modal="modal-villa">Batal</button>
+        <button class="btn-primary" id="btn-save-villa">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PELANGGAN -->
+  <div id="modal-pelanggan" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-pelanggan-title">Tambah Pelanggan</h3>
+        <button class="modal-close" data-modal="modal-pelanggan">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="pelanggan-id" />
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap <span class="required">*</span></label>
+            <input type="text" id="pelanggan-nama" class="form-input" placeholder="Nama lengkap" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="pelanggan-email" class="form-input" placeholder="email@contoh.com" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">No. HP <span class="required">*</span></label>
+            <input type="text" id="pelanggan-hp" class="form-input" placeholder="08xxxxxxxxxx" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">No. KTP</label>
+            <input type="text" id="pelanggan-ktp" class="form-input" placeholder="16 digit NIK" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alamat</label>
+          <textarea id="pelanggan-alamat" class="form-input form-textarea" rows="2" placeholder="Alamat lengkap..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" data-modal="modal-pelanggan">Batal</button>
+        <button class="btn-primary" id="btn-save-pelanggan">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL TRANSAKSI -->
+  <div id="modal-transaksi" class="modal-overlay hidden">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 id="modal-transaksi-title">Tambah Transaksi</h3>
+        <button class="modal-close" data-modal="modal-transaksi">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="transaksi-id" />
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Pelanggan <span class="required">*</span></label>
+            <select id="transaksi-pelanggan" class="form-input form-select">
+              <option value="">-- Pilih Pelanggan --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Villa <span class="required">*</span></label>
+            <select id="transaksi-villa" class="form-input form-select" id="transaksi-villa">
+              <option value="">-- Pilih Villa --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tanggal Check-in <span class="required">*</span></label>
+            <input type="date" id="transaksi-checkin" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tanggal Check-out <span class="required">*</span></label>
+            <input type="date" id="transaksi-checkout" class="form-input" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Durasi (malam)</label>
+            <input type="text" id="transaksi-durasi" class="form-input" readonly placeholder="Otomatis" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Total Harga</label>
+            <input type="text" id="transaksi-total-display" class="form-input" readonly placeholder="Otomatis" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Metode Pembayaran</label>
+            <select id="transaksi-pembayaran" class="form-input form-select">
+              <option value="Transfer Bank">Transfer Bank</option>
+              <option value="Tunai">Tunai</option>
+              <option value="QRIS">QRIS</option>
+              <option value="Kartu Kredit">Kartu Kredit</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status Transaksi</label>
+            <select id="transaksi-status" class="form-input form-select">
+              <option value="Pending">Pending</option>
+              <option value="Konfirmasi">Dikonfirmasi</option>
+              <option value="Selesai">Selesai</option>
+              <option value="Batal">Dibatalkan</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Catatan</label>
+          <textarea id="transaksi-catatan" class="form-input form-textarea" rows="2" placeholder="Catatan tambahan..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" data-modal="modal-transaksi">Batal</button>
+        <button class="btn-primary" id="btn-save-transaksi">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL HAPUS -->
+  <div id="modal-hapus" class="modal-overlay hidden">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3>Konfirmasi Hapus</h3>
+        <button class="modal-close" data-modal="modal-hapus">✕</button>
+      </div>
+      <div class="modal-body" style="text-align:center;gap:8px">
+        <div class="delete-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+          </svg>
+        </div>
+        <p id="hapus-message" class="delete-message">Yakin ingin menghapus data ini?</p>
+        <p class="delete-sub">Tindakan ini tidak dapat dibatalkan.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" data-modal="modal-hapus">Batal</button>
+        <button class="btn-danger" id="btn-konfirmasi-hapus">Ya, Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast hidden">
+    <svg id="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    <span id="toast-msg">Berhasil</span>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
